@@ -1,0 +1,97 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<div>
+    <form action="/" enctype="multipart/form-data" method="POST">
+        <table>
+            <tr>
+                <td>Select files:</td>
+                <td><input multiple name="file" type="file"/></td>
+            </tr>
+            <tr>
+                <td/>
+                <td><input type="submit" value="Upload"/></td>
+            </tr>
+        </table>
+    </form>
+</div>
+
+<div>
+    <ul>
+        <li th:each="file : ${files}">
+            <a th:href="${file}" th:text="${file}"/>
+        </li>
+    </ul>
+</div>
+
+<div th:if="${wordCount} != null">
+    <table class="resultTable" id="wordCollection_ag">
+        <tr>
+            <td class="header">A-G</td>
+            <td class="header">Count</td>
+        </tr>
+        <tr th:each="word : ${wordCount.agWords}">
+            <td th:text="${word.key} + ':'"/>
+            <td th:text="${word.value}"/>
+        </tr>
+    </table>
+    <table class="resultTable" id="wordCollection_hn">
+        <tr>
+            <td class="header">H-N</td>
+            <td class="header">Count</td>
+        </tr>
+        <tr th:each="word : ${wordCount.hnWords}">
+            <td th:text="${word.key} + ':'"/>
+            <td th:text="${word.value}"/>
+        </tr>
+    </table>
+    <table class="resultTable" id="wordCollection_ou">
+        <tr>
+            <td class="header">O-U</td>
+            <td class="header">Count</td>
+        </tr>
+        <tr th:each="word : ${wordCount.ouWords}">
+            <td th:text="${word.key} + ':'"/>
+            <td th:text="${word.value}"/>
+        </tr>
+    </table>
+    <table class="resultTable" id="wordCollection_vz">
+        <tr>
+            <td class="header">V-Z</td>
+            <td class="header">Count</td>
+        </tr>
+        <tr th:each="word : ${wordCount.vzWords}">
+            <td th:text="${word.key} + ':'"/>
+            <td th:text="${word.value}"/>
+        </tr>
+    </table>
+</div>
+<style>
+    .resultTable {
+        border-width: 2px;
+        border-style: solid;
+        float: left;
+    }
+
+    #wordCollection_ag {
+        border-color: aqua;
+    }
+
+    #wordCollection_hn {
+        border-color: hotpink;
+    }
+
+    #wordCollection_ou {
+        border-color: orange;
+    }
+
+    #wordCollection_vz {
+        border-color: violet;
+    }
+
+    .header {
+        background-color: lightblue
+    }
+</style>
+</body>
+</html>
